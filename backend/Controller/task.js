@@ -36,16 +36,16 @@ const gettask=async(req,res)=>{
     }
 }
 
-const getonetask=async(req,res)=>{
-    try{
-       const {id}=req.params;
-       const user=await Task.findById(id).populate('user');
-       return res.status(200).json({msg:" task fetched successfull..",user})
-    }
-    catch(err){
-        return res.status(500).json({msg:err.message})
-    }
-}
+// const getonetask=async(req,res)=>{
+//     try{
+//        const {id}=req.params;
+//        const user=await Task.findById(id).populate('user');
+//        return res.status(200).json({msg:" task fetched successfull..",user})
+//     }
+//     catch(err){
+//         return res.status(500).json({msg:err.message})
+//     }
+// }
 const taskupdate=async(req,res)=>{
     const {task,description}=req.body
     try{
@@ -71,4 +71,14 @@ const singletask=async(req,res)=>{
        return res.status(500).json({msg:err.message});
     }
 }
-module.exports={taskpost,gettask,getonetask,taskupdate,singletask};
+const deletetask=async(req,res)=>{
+    try{
+        const {id}=req.params;
+        const user=await Task.findByIdAndDelete(id).populate('user');
+        return res.status(200).json({msg:"task deleted successfully",user})
+    }
+    catch(err){
+        return res.status(500).json({msg:err.message}); 
+    }
+}
+module.exports={taskpost,gettask,taskupdate,singletask,deletetask};
