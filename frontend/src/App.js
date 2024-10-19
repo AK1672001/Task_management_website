@@ -30,7 +30,8 @@ function App() {
       }
     };
     varification();
-  }, []);
+  }, [auth]);
+  console.log("auth app",auth)
   return (
     <div className="App">
        
@@ -41,8 +42,8 @@ function App() {
          <Route path="/login" element={<SignupLogin/>}/>
          <Route path="/addtask" element={<Addtask/>}/>
          <Route path="/tasklist" element={<TaskList/>}/>
-         <Route path="/viewtask" element={<Viewtask/>}/>
-         <Route path="/updatetask" element={<Updatetask/>}/>
+         <Route path="/viewtask/:id" element={<Viewtask/>}/>
+         <Route path="/updatetask/:id" element={<Updatetask/>}/>
        </Routes>
        </CreateContext.Provider>
       

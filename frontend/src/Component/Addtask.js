@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { useContext } from 'react';
 import { CreateContext } from "../App";
+import { useNavigate } from 'react-router-dom';
 const Addtask = () => {
   const {auth,setAuth,userId,setUserId}=useContext(CreateContext)
   const [description,setDescription]=useState("")
   const [task,setTask]=useState("")
   const [success,setSuccess]=useState("");
   const [error,setError]=useState("");
+  const navigate=useNavigate()
    console.log("userid post>>",userId)
   const handlechange=(e)=>{
       e.preventDefault();
@@ -25,6 +27,7 @@ const Addtask = () => {
           console.log(response.data);
           setSuccess(response.data.msg)
           setTimeout(()=>{
+            navigate("/tasklist")
             setSuccess("")  
           },2000)
           setDescription("")
@@ -48,7 +51,7 @@ const Addtask = () => {
             {
               success && (
                 <>
-                <p className='text-green-600 font-bold text-3xl'>{success}</p>
+                <p className='text-green-600 font-bold text-sm sm:text-3xl'>{success}</p>
                 </>
               )
             }

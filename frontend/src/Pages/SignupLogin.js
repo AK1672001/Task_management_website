@@ -2,13 +2,15 @@ import axios from "axios";
 import React, { useState ,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useContext } from "react";
+import { CreateContext } from "../App";
 const SignupLogin = () => {
   const [signup, setSignup] = useState(true);
   const [user, setUser] = useState({ name: "", email: "", password: "" });
   const [success, setSuccess] = useState(""); 
   const [error, setError] = useState(""); 
   const navigate = useNavigate();
-  
+  const { auth,setAuth } = useContext(CreateContext);
   useEffect(() => {
     // Retrieving the 'user' cookie if it exists
     const userCookie = Cookies.get("user");
@@ -48,8 +50,11 @@ const SignupLogin = () => {
     try {
       const response = await axios.post("http://localhost:5000/login", user);
       setSuccess(response.data.msg);
+
+      
       setTimeout(() => {
         setSuccess("");
+        setAuth(response.data.name)
         navigate("/tasklist"); 
       }, 2000);
     } catch (err) {

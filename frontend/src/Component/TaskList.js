@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate,useParams} from "react-router-dom";
 import { useContext } from 'react';
 import { CreateContext } from "../App";
 import axios from "axios";
-
+import { MdDelete } from "react-icons/md";
+import { GrFormView } from "react-icons/gr";
+import { MdEdit } from "react-icons/md";
 const TaskList = () => {
   const { auth, setAuth, userId, setUserId } = useContext(CreateContext);
   const [gettask, setGetTask] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate=useNavigate();
   const [success,setSuccess]=useState("")
-
+ 
+  
+    
+      
   useEffect(() => {
     const data = async () => {
       try {
@@ -23,7 +29,7 @@ const TaskList = () => {
       }
     };
     data();
-  }, [gettask]);
+  }, []);
 
   if (loading) {
     return <div className="text-center p-6">Loading...</div>;
@@ -36,7 +42,9 @@ const TaskList = () => {
             setTimeout(()=>{
               setSuccess(" ")
             },2000)
-            const deleteuser=await gettask.filter((_,item)=>item._id!==id)
+            console.log("id delete>>",id)
+            const deleteuser=await gettask.filter(item => item._id !==id);
+
             console.log("deleteuser",deleteuser)
             setGetTask(deleteuser)
              
@@ -58,11 +66,13 @@ const TaskList = () => {
           </>
         )
       }
-      <div className="p-4 mt-6 overflow-x-auto">
+      <div className="sm:p-4 p-4 mt-6 overflow-x-auto ">
         {gettask.length > 0 ? (
-          <table className="min-w-full table-auto border-collapse border border-gray-300">
+          <table className="min-w-full  table-auto border-collapse border border-gray-300">
             <thead>
               <tr className="bg-gray-100">
+                
+                
                 <th className="border border-gray-300 px-4 py-2 text-left">Name</th>
                 <th className="border border-gray-300 px-4 py-2 text-left">Task</th>
                 <th className="border border-gray-300 px-4 py-2 text-left">Description</th>
@@ -70,18 +80,26 @@ const TaskList = () => {
               </tr>
             </thead>
             <tbody>
+            
               {gettask.map((item, index) => (
                 <tr key={index} className="hover:bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-2">{auth}</td>
+                   
+                  <td className="border border-gray-300 px-4 py-2">{item.user.name}</td>
                   <td className="border border-gray-300 px-4 py-2">{item.task}</td>
                   <td className="border border-gray-300 px-4 py-2">{item.description}</td>
                   <td className="border border-gray-300 px-4 py-2">
                     <div className="flex items-center space-x-3">
-                      <Link to="/viewtask" className="text-blue-600 hover:underline">View</Link>
-                      <Link to="/updatetask" className="text-yellow-500 hover:underline">Edit</Link>
-                      <button onClick={()=>handledelete(item._id)} className="text-red-600 hover:underline">
-                        Delete
+                      <Link to={`/viewtask/${item._id}`} className="text-blue-600 hover:underline font-bold text-2xl"><GrFormView /></Link>
+                     {
+                       auth && (
+                        <>
+                         <Link to={`/updatetask/${item._id}`} className="text-yellow-500 hover:underline font-bold text-xl"><MdEdit /></Link>
+                      <button onClick={()=>handledelete(item._id)} className="text-red-600 hover:underline font-bold text-xl">
+                      <MdDelete />
                       </button>
+                        </>
+                       )
+                     }
                     </div>
                   </td>
                 </tr>
@@ -89,7 +107,7 @@ const TaskList = () => {
             </tbody>
           </table>
         ) : (
-          <div className="text-center py-6">No tasks available</div>
+          <div className="text-center py-6">No task is available <span className="text-blue-600 underline"><Link to={"/addtask"}>create task here</Link></span></div>
         )}
       </div>
     </>

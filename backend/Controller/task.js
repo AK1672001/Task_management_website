@@ -6,7 +6,7 @@ const taskpost=async(req,res)=>{
     const {task,description,userId}=req.body;
     try{
         if(!task || !description)
-            return res.status(404).json({msg:"task and description fill"})
+            return res.status(404).json({msg:"Please provide both a task and a description"})
         const userExists = await User.findById(userId);
         if (!userExists) {
             return res.status(404).json({ msg: "User not found" });
@@ -20,7 +20,7 @@ const taskpost=async(req,res)=>{
             
          })
          await newtask.save();
-         return res.status(200).json({msg:"task uploaded",newtask})
+         return res.status(200).json({msg:"Create task a successfully",newtask})
     }
     catch(err){
         return res.status(500).json({msg:err.message})
@@ -39,32 +39,27 @@ const gettask=async(req,res)=>{
 
 const singletask = async (req, res) => {
     try {
-        console.log("req.params>>",req.params)
-        const { id } = req.params;
-        console.log("id",id)
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ msg: `Invalid task ID format: ${id}` });
-        }
-        const task = await Task.findById(id).populate('user');
-        if(!task){
-          
+        const { id } = req.params;  
+        console.log("Task id is",id);
+
+        const task = await Task.findById(id).populate("user")
+        if (!task) {
             return res.status(404).json({ msg: `Task with ID ${id} not found` });
         }
-        if (!task) {
-            return res.status(404).json({ msg: "Task not found" });
-        }
-        return res.status(200).json({ msg: "Single task fetched successfully", task });
+
+        return res.status(200).json({ msg: "Task fetched successfully", task });
     } catch (err) {
         return res.status(500).json({ msg: err.message });
     }
 }
 const taskupdate=async(req,res)=>{
-    const {task,description}=req.body
+    const {updatetask}=req.body
     try{
         const {id}=req.params;
+        console.log("id update>>",id)
         const user=await Task.findByIdAndUpdate(id,{
-            task,
-            description
+            task:updatetask.task,
+            description:updatetask.description
         },{new:true}).populate('user')
         await user.save();
         return res.status(200).json({msg:"task updated successfully",user})

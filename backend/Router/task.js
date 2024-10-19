@@ -1,6 +1,5 @@
 const {taskpost,gettask,taskupdate,singletask,deletetask}=require("../Controller/task");
 
-const Authenticate=require("../Middleware/Authenticate")
 const express=require("express");
 
 const taskrouter=express.Router();
