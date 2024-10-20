@@ -33,7 +33,7 @@ function App() {
     };
     varification();
   }, [auth]);
-  console.log("auth app",auth)
+ 
   return (
     <div className="App">
        
