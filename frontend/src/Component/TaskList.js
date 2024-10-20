@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link ,useNavigate,useParams} from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { useContext } from 'react';
 import { CreateContext } from "../App";
 import axios from "axios";
@@ -7,10 +7,9 @@ import { MdDelete } from "react-icons/md";
 import { GrFormView } from "react-icons/gr";
 import { MdEdit } from "react-icons/md";
 const TaskList = () => {
-  const { auth, setAuth, userId, setUserId } = useContext(CreateContext);
+  const { auth } = useContext(CreateContext);
   const [gettask, setGetTask] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate=useNavigate();
   const [success,setSuccess]=useState("")
  
   
