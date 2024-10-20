@@ -16,11 +16,7 @@ const userShema=new mongoose.Schema({
         require:true
     },
     
-    task: {
-        type:mongoose.Schema.Types.ObjectId,
-        ref: "Task", 
-        required: true
-    },
+   
    
 })
 
