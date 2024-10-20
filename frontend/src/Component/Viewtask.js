@@ -37,7 +37,7 @@ const ViewTask = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-      <div className="w-full max-w-4xl bg-white p-10 shadow-lg rounded-xl mx-4">
+      <div className="w-full max-w-4xl bg-white p-10 shadow-2xl border border-x-black border-y-black rounded-xl mx-4">
         <h1 className="font-bold text-4xl text-center text-gray-900 mb-8">Task Details</h1>
         <form className="space-y-8">
           <h1 className="font-bold text-3xl">{viewtask.user?.name}</h1>

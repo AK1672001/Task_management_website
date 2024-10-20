@@ -57,7 +57,7 @@ const UpdateTask = () => {
    }
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      <div className="w-full max-w-3xl bg-white p-8 shadow-lg rounded-xl mx-4">
+      <div className="w-full max-w-3xl bg-white p-8 border border-x-black border-y-black shadow-2xl rounded-xl mx-4">
         <h1 className="font-bold text-4xl text-center text-gray-900 mb-8">Edit Task</h1>
           {
             success && (
