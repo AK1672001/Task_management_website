@@ -15,7 +15,12 @@ const userShema=new mongoose.Schema({
         type:String,
         require:true
     },
-   
+    
+    task: {
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "Task", 
+        required: true
+    },
    
 })
 
