@@ -18,7 +18,7 @@ const TaskList = () => {
   useEffect(() => {
     const data = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/gettask");
+        const response = await axios.get("https://task-management-website-865l.onrender.com/gettask");
         console.log(response.data);
         setGetTask(response.data.user);
       } catch (err) {
@@ -35,7 +35,7 @@ const TaskList = () => {
   }
   const handledelete=async(id)=>{
         try{
-            const response=await axios.delete(`http://localhost:5000/deletetask/${id}`)
+            const response=await axios.delete(`https://task-management-website-865l.onrender.com/deletetask/${id}`)
             console.log(response.data)
             setSuccess(response.data.msg)
             setTimeout(()=>{

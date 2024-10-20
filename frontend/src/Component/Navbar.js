@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const logout = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/logout");
+      const response = await axios.get("https://task-management-website-865l.onrender.com/logout");
       console.log(response.data);
       setSuccess(response.data.msg);
 

@@ -20,7 +20,7 @@ const ViewTask = () => {
     const taskview = async (task_id) => {
       console.log("taskid",task_id)
       try {
-        const response = await axios.get(`http://localhost:5000/singletask/${task_id}`);
+        const response = await axios.get(`https://task-management-website-865l.onrender.com/singletask/${task_id}`);
         console.log(response.data)
         
         console.log("Fetched task data:",response.data);

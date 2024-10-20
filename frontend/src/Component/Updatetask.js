@@ -17,7 +17,7 @@ const UpdateTask = () => {
    useEffect(() => {
     const taskview = async (task_id) => {
       try {
-        const response = await axios.get(`http://localhost:5000/singletask/${task_id}`);
+        const response = await axios.get(`https://task-management-website-865l.onrender.com/singletask/${task_id}`);
         console.log(response.data)
         
         console.log("Fetched task data:",response.data);
@@ -43,7 +43,7 @@ const UpdateTask = () => {
    const handleClickupdate=async(e)=>{
     e.preventDefault();
         try{
-             const response=await axios.put(`http://localhost:5000/taskupdate/${id}`,{updatetask})
+             const response=await axios.put(`https://task-management-website-865l.onrender.com/taskupdate/${id}`,{updatetask})
              console.log(response.data);
              setSuccess(response.data.msg)
              setTimeout(()=>{

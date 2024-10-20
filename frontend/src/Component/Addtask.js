@@ -23,7 +23,7 @@ const Addtask = () => {
     console.log("task",description)
     
       try{
-          const response=await axios.post("http://localhost:5000/addtask",{description,task,userId})
+          const response=await axios.post("https://task-management-website-865l.onrender.com/addtask",{description,task,userId})
           console.log(response.data);
           setSuccess(response.data.msg)
           setTimeout(()=>{

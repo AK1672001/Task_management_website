@@ -10,7 +10,7 @@ const server = express();
 const cors = require("cors");
 server.use(
     cors({
-      origin: "http://localhost:3000",
+      origin: ["http://localhost:3000",'https://task-management-website-865l.onrender.com'],
       credentials: true,
     })
   );

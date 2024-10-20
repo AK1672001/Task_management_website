@@ -9,7 +9,9 @@ import axios from "axios";
 import { createContext} from "react";
 import { useState,useEffect } from "react";
 const CreateContext= createContext();
-axios.defaults.baseURL="http://localhost:5000"
+axios.defaults.baseURL=window.location.origin === 'http://localhost:3000' 
+? 'http://localhost:5000' 
+: 'https://task-management-website-865l.onrender.com';
 axios.defaults.withCredentials=true
 function App() {
   const [auth, setAuth] = useState("");
@@ -17,7 +19,7 @@ function App() {
   useEffect(() => {
     const varification = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/verification");
+        const response = await axios.get("https://task-management-website-865l.onrender.com/verification");
         console.log(response.data);
         console.log("response verifivation", response.data);
         console.log("response verifivation", response.data.name);
