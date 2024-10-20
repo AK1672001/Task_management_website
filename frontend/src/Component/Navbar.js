@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CreateContext } from "../App";
 const Navbar = () => {
   const { auth, setAuth } = useContext(CreateContext);
   const [success, setSuccess] = useState("");
-  const [logouticon, setLogoutIcon] = useState(false);
   const navigate = useNavigate();
 
   const logout = async () => {
