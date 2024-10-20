@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = require("./Router/router");
 const taskrouter = require("./Router/task");
-
+const path = require('path');
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -34,3 +34,8 @@ mongoose
     console.log(err);
   });
 
+  const dirname=path.resolve();
+  server.use(express.static(path.join(dirname,'/frontend/build')));
+  server.get("*",(req,res)=>{
+      res.sendFile(path.join(dirname,"frontend",'build','index.html'))
+  })
