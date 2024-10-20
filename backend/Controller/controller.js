@@ -34,7 +34,7 @@ const login=async(req,res)=>{
             httpOnly: true,
             
           })
-         return res.status(200).json({msg:"logged in successfully",name:user.name,userId:user._id})
+         return res.status(200).json({msg:"logged in successfully",token,name:user.name,userId:user._id})
     }
     catch(err){
         return res.status(500).json({msg:err.message})
