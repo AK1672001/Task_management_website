@@ -32,7 +32,7 @@ const SignupLogin = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/signup", user);
+      const response = await axios.post("https://task-management-website-865l.onrender.com/signup", user);
       setSuccess(response.data.msg);
       setTimeout(() => {
         setSuccess("");
@@ -48,7 +48,7 @@ const SignupLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/login", user);
+      const response = await axios.post("https://task-management-website-865l.onrender.com/login", user);
       setSuccess(response.data.msg);
 
       
